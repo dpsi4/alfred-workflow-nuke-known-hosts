@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>net.dpsi4.alfred.nuke</string>
+	<key>category</key>
+	<string>Internet</string>
+	<key>connections</key>
+	<dict>
+		<key>4AFB0F68-F9D9-4BFF-B552-86EFD11EDFF0</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>89CB79FB-0791-4C3F-9B45-CE1B54DF97E7</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>9A35ED45-23BD-4AE8-B267-1F0489A90A9E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4AFB0F68-F9D9-4BFF-B552-86EFD11EDFF0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Reid Miller</string>
+	<key>description</key>
+	<string>Delete and SSH Key line from known_hosts</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Nuke SSH Key</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>Removed line {query} from known_hosts file</string>
+				<key>title</key>
+				<string>Nuked successful</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>89CB79FB-0791-4C3F-9B45-CE1B54DF97E7</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>nuke</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Nuke known_host entry</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>9A35ED45-23BD-4AE8-B267-1F0489A90A9E</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>query=$1
+
+sed -i.bak -e "${query}d" $HOME/.ssh/known_hosts
+
+if [[ !$ -eq 0 ]]; then
+  echo "${query}"
+fi</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>4AFB0F68-F9D9-4BFF-B552-86EFD11EDFF0</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>This workflow allows you to easily remove an offending known_hosts entry without needing to manually go into your editor to remove the offending line</string>
+	<key>uidata</key>
+	<dict>
+		<key>4AFB0F68-F9D9-4BFF-B552-86EFD11EDFF0</key>
+		<dict>
+			<key>xpos</key>
+			<real>295</real>
+			<key>ypos</key>
+			<real>95</real>
+		</dict>
+		<key>89CB79FB-0791-4C3F-9B45-CE1B54DF97E7</key>
+		<dict>
+			<key>xpos</key>
+			<real>490</real>
+			<key>ypos</key>
+			<real>95</real>
+		</dict>
+		<key>9A35ED45-23BD-4AE8-B267-1F0489A90A9E</key>
+		<dict>
+			<key>xpos</key>
+			<real>85</real>
+			<key>ypos</key>
+			<real>95</real>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>1.0.0</string>
+	<key>webaddress</key>
+	<string>http://github.com/dpsi4/nuke_known_hosts</string>
+</dict>
+</plist>
